@@ -34,6 +34,14 @@ func TestCalcHandlerStatusCodes(t *testing.T) {
 			expectedBody: `"error":"Expression is not valid"`,
 		},
 		{
+			name: "Division by Zero",
+			body: map[string]string{
+				"expression": "2/0",
+			},
+			expectedStatus: http.StatusUnprocessableEntity, 
+			expectedBody: `"error":"Expression is not valid"`,
+		},
+		{
 			name: "Empty Expression",
 			body: map[string]string{
 				"expression": "",
